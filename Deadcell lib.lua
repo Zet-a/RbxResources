@@ -176,7 +176,7 @@ local themes = {
 }
 
 local themeobjects = {}
-local library = {theme = table.clone(themes.Default),currentcolor = nil, folder = "zephyrus", flags = {}, open = true, mousestate = services.InputService.MouseIconEnabled, cursor = nil, holder = nil, connections = {}, notifications = {}};
+local library = {theme = table.clone(themes.Default),currentcolor = nil, folder = "lolhax", flags = {}, open = true, mousestate = services.InputService.MouseIconEnabled, cursor = nil, holder = nil, connections = {}, notifications = {}};
 local decode = (crypt and crypt.base64decode) or base64_decode
 library.gradient = images.gradient90 --decode("iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABuSURBVChTxY9BDoAgDASLGD2ReOYNPsR/+BAfroI7hibe9OYmky2wbUPIOdsXdc1f9WMwppQm+SDGBnUvomAQBH49qzhFEag25869ElzaIXDhD4JGbyoEVxUedN8FKwnfmwhucgKICc+pNB1mZhdCdhsa2ky0FAAAAABJRU5ErkJggg==")
 library.utility = utility
@@ -1392,7 +1392,7 @@ end;
 function library:new_window(cfg)
     -- settings
     local window_tbl = {pages = {}, page_buttons = {}, page_accents = {}}; -- store other functions
-    local window_size = cfg.size or cfg.Size or Vector2.new(600,400);
+    local window_size = cfg.Size or Vector2.new(600,400);
     local size_x = window_size.X;
     local size_y = window_size.Y;
     -- drawings

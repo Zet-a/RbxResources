@@ -2,10 +2,10 @@
 -- settings (so u dont have to scroll)
 local settings = {
     folder_name = "lolhax"; -- stupid shit
-    default_accent = Color3.fromRGB(0,85.255); -- also stupid shit
+    default_accent = Color3.fromRGB(0,85,255); -- also stupid shit
 };
 
-local drawing = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zet-a/RbxResources/main/Drawing%20lib.lua"))();
+local drawing = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zet-a/RbxResources/main/Drawinglib.lua"))();
 local tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/utility/main/Tween.lua"))()
 
 -- // UI LIBRARY

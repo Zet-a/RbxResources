@@ -1392,7 +1392,7 @@ end;
 function library:new_window(cfg)
     -- settings
     local window_tbl = {pages = {}, page_buttons = {}, page_accents = {}}; -- store other functions
-    local window_size = cfg.Size or Vector2.new(600,400);
+    local window_size = cfg.size or cfg.Size or Vector2.new(600,400);
     local size_x = window_size.X;
     local size_y = window_size.Y;
     -- drawings

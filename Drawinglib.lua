@@ -829,3 +829,4 @@ local drawing = {} do
         return mt
     end
 end
+return drawing

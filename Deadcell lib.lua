@@ -13,6 +13,7 @@ if not isfolder(settings.folder_name) then
     makefolder(settings.folder_name);
     makefolder(settings.folder_name.."/configs");
     makefolder(settings.folder_name.."/assets");
+    makefolder(settings.folder_name.."/themes");
 end;
 
 local images = {
@@ -1376,8 +1377,8 @@ local keys = {
 }
 -- // UI START
 function library:load_config(cfg_name)
-    if isfile(cfg_name) then
-        local file = readfile(cfg_name)
+    if isfile(settings.folder_name.."/configs/"..cfg_name) then
+        local file = readfile(settings.folder_name.."/configs/"..cfg_name)
         local config = game:GetService("HttpService"):JSONDecode(file)
 
         for flag, v in next, config do

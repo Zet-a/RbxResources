@@ -6,7 +6,7 @@ local settings = {
 };
 
 local drawing = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zet-a/RbxResources/main/Drawinglib.lua"))();
-local tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/utility/main/Tween.lua"))()
+local tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zet-a/RbxResources/main/Tween.lua"))()
 
 -- // UI LIBRARY
 if not isfolder(settings.folder_name) then

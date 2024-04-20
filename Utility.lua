@@ -9,7 +9,7 @@ function library:ChamsContainer(identifier: string, color: Color3)
             return container
         else
             container = Instance.new("Model", highlights)
-            table.insert(ChamContainers,unpack({[identifier] = container})
+            ChamContainers[identifier] = container
         end
     else
         highlights = Instance.new("Folder",Workspace)

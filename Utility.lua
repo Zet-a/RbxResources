@@ -33,7 +33,7 @@ end
 
 function library:AddChams(identifier: string, part: BasePart | Model, color: Color3)
     local partClone = part:Clone()
-    partClone.Parent = ChamsContainer(identifier, color)
+    partClone.Parent = library:ChamsContainer(identifier, color)
     if partClone:IsA("BasePart") then
         partClone.Transparency = 0.99
         partClone.CanCollide = false

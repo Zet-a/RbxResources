@@ -1,6 +1,6 @@
 local library = {}
 getgenv().ChamContainers = {}
-function library:ChamsContainer(identifier: string, color: Color3, bool: Boolean)
+function library:ChamsContainer(identifier: string, color: Color3, bool: boolean)
     local highlights = Workspace:FindFirstChild("Highlights")
     local container = nil
     if highlights then

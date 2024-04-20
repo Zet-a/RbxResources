@@ -35,9 +35,9 @@ function library:AddChams(identifier: string, part: BasePart | Model, color: Col
     local partClone = part:Clone()
     partClone.Parent = library:ChamsContainer(identifier, color)
     if partClone:IsA("BasePart") then
-        if partClone:FindFirstChildWhichIsA("ProximityPrompt",true) then
-            local prox = partClone:FindFirstChildWhichIsA("ProximityPrompt",true)
-            local origprox = part:FindFirstChildWhichIsA("ProximityPrompt",true)
+        if partClone:FindFirstChildOfClass("ProximityPrompt") then
+            local prox = partClone:FindFirstChildOfClass("ProximityPrompt")
+            local origprox = part:FindFirstChildOfClass("ProximityPrompt")
             prox.InputHoldBegan:Connect(function()
                 fireproximityprompt(origprox)
             end

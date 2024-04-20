@@ -3,12 +3,15 @@ getgenv().ChamContainers = {}
 function library:ChamsContainer(identifier: string, color: Color3)
     local highlights = Workspace:FindFirstChild("Highlights")
     local container = Workspace:FindFirstChild(identifier)
-    if container and highlights then
-        return container
+    if highlights then
+        if container then
+            return container
+        else
+            container = Instance.new("Model", highlights)
+            ChamContainers[identifier] = container
+        end
     else
         highlights = Instance.new("Folder",Workspace)
-        container = Instance.new("Model", highlights)
-        ChamContainers[identifier] = container
     end
     highlights.Name = "Highlights"
     container.Name = identifier

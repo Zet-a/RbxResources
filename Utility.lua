@@ -13,6 +13,8 @@ function library:ChamsContainer(identifier: string, color: Color3)
         end
     else
         highlights = Instance.new("Folder",Workspace)
+        container = Instance.new("Model", highlights)
+        ChamContainers[identifier] = container
     end
     highlights.Name = "Highlights"
     container.Name = identifier

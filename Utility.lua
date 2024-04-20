@@ -10,6 +10,7 @@ function library:ChamsContainer(identifier: string, color: Color3)
         container = Instance.new("Model", highlights)
         ChamsContainers[identifier] = container
     end
+    highlights.Name = "Highlights"
     container.Name = identifier
     Instance.new("Humanoid", container)
     local highlight = Instance.new("Highlight")

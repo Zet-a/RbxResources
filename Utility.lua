@@ -26,7 +26,7 @@ function library:ChamsContainer(identifier: string, color: Color3)
     highlight.OutlineColor = color
     highlight.FillTransparency = 0.97
     highlight.OutlineTransparency = 0.5
-    highlight.Enabled = true
+    highlight.Enabled = false
     highlight.Parent = container
     return container
 end

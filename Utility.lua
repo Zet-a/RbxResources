@@ -37,6 +37,7 @@ function library:AddChams(identifier: string, part: BasePart | Model, color: Col
     if partClone:IsA("BasePart") then
         partClone.Transparency = 0.99
         partClone.CanCollide = false
+        partClone.Anchored = true
     end
     part.Destroying:Connect(function() partClone:Destroy() end)
 end

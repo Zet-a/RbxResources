@@ -1,6 +1,6 @@
 local library = {}
 getgenv().ChamContainers = {}
-function library:ChamsContainer(identifier: string, color: Color3)
+function library:ChamsContainer(identifier: string, color: Color3, bool: Boolean)
     local highlights = Workspace:FindFirstChild("Highlights")
     local container = nil
     if highlights then
@@ -18,7 +18,9 @@ function library:ChamsContainer(identifier: string, color: Color3)
     end
     highlights.Name = "Highlights"
     container.Name = identifier
-    Instance.new("Humanoid", container)
+    if bool then
+        Instance.new("Humanoid", container)
+    end
     local highlight = Instance.new("Highlight")
     highlight.Adornee = container
     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop

@@ -8,7 +8,7 @@ task.spawn(function()
             if v.part ~= nil and v.part.Position then
                 local origpart = v.part
                 local clonepart = v.clone
-                origpart.Destroying:Connect(function() table.remove(parts, v) end)
+                origpart.Destroying:Connect(function() table.remove(parts, table.find(parts,v)) end)
                 clonepart.Position = origpart.Position
             else
                 table.remove(parts,v)

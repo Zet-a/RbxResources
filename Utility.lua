@@ -41,7 +41,7 @@ function library:AddChams(identifier: string, part: BasePart | Model, color: Col
     partClone.Parent = library:ChamsContainer(identifier, color)
     if partClone:IsA("BasePart") then
         if prox ~= nil then
-            local cloneprox = partClone:FindFirstDescendant(prox.Name)
+            local cloneprox = partClone:FindFirstChildWhichIsA(prox.Name,true)
             cloneprox.Triggered:Connect(function()
                 fireproximityprompt(prox)
             end)

@@ -1,5 +1,17 @@
 local library = {}
 getgenv().ChamContainers = {}
+local parts = {}
+local rs = cloneref(game:GetService("RunService"))
+task.spawn(function()
+    rs.RenderStepped:Connect(function()
+        for i,v in pairs(parts) do
+            local origpart = v.part
+            local clonepart = v.clone
+            origpart.Destroying:Connect(function() table.remove(parts, v) end)
+            clone.Position = part.Position
+        end
+    end)
+end)
 function library:ChamsContainer(identifier: string, color: Color3, bool: boolean)
     local highlights = Workspace:FindFirstChild("Highlights")
     local container = nil
@@ -33,10 +45,21 @@ function library:ChamsContainer(identifier: string, color: Color3, bool: boolean
     return container
 end
 
-function library:AddChams(identifier: string, part: BasePart | Model, color: Color3)
+function library:AddChams(identifier: string, part: BasePart | Model, color: Color3, prox: ProximityPrompt)
     local partClone = part:Clone()
     partClone.Parent = library:ChamsContainer(identifier, color)
     if partClone:IsA("BasePart") then
+        if prox ~= nil then
+            local cloneprox = partClone:FindFirstDescendant(prox.Name)
+            cloneprox.Triggered:Connect(function()
+                fireproximityprompt(prox)
+            end)
+        end
+        local temptable = {
+            ["part"] = part,
+            ["clone"] = partClone
+        }
+        table.insert(parts,temptable)
         partClone.Transparency = 0.99
         partClone.CanCollide = false
         partClone.Anchored = true

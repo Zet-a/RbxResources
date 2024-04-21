@@ -11,7 +11,7 @@ task.spawn(function()
                 origpart.Destroying:Connect(function() table.remove(parts, table.find(parts,v)) end)
                 clonepart.Position = origpart.Position
             else
-                table.remove(parts,v)
+                table.remove(parts,table.find(parts,v))
             end
         end
     end)

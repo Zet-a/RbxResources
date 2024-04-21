@@ -5,7 +5,7 @@ local rs = cloneref(game:GetService("RunService"))
 task.spawn(function()
     rs.RenderStepped:Connect(function()
         for i,v in pairs(parts) do
-            if v.part ~= nil then
+            if v.part ~= nil and v.part.Position then
                 local origpart = v.part
                 local clonepart = v.clone
                 origpart.Destroying:Connect(function() table.remove(parts, v) end)

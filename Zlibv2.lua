@@ -146,8 +146,12 @@ function base:Update()
         color = zlib.HighlightColor
     end
 
-    local cf, size = self.PrimaryPart.CFrame, self.Size
+    local cf,size
     
+    if self.Object:IsA("BasePart") then
+        cf,size = self.Object.CFrame, self.Size
+    end
+
     if zlib.DynamicScaling then
         local bodyparts = zlib:GetBodyParts(self.Object)
 

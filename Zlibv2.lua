@@ -191,7 +191,7 @@ function zlib:CreateText(obj: BasePart,options: table)
         ColorDynamic = options.ColorDynamic,
         RenderInNil = options.RenderInNil
     }, base)
-    tab.Components["Text"] = draw("Text", {
+    tab.Components["Text"] = draw("Text",{
         Text = tab.Name,
         Color = tab.Color,
         Center = true,

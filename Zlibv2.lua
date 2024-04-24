@@ -167,7 +167,7 @@ function base:Update()
 
         if vis then
             self.Components.Text.Visible = true
-            self.Components.Text.Position = Vector2.new(Tagpos.X,Tagpos.Y)
+            self.Components.Text.Position = Vector2.new(Tagpos.X,Tagpos.Y) + self.Offset
             self.Components.Text.Text = self.Name
             self.Components.Text.Color = color
         else

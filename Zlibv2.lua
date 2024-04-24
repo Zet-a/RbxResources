@@ -178,7 +178,6 @@ function base:Update()
 end
 
 function zlib:CreateText(obj: BasePart,options: table)
-    local text = draw("Text")
     local tab = setmetatable({
         Name = options.Name or obj.Name,
         Type = "Text",

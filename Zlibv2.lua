@@ -167,7 +167,7 @@ function base:Update()
 
         if vis then
             self.Components.Text.Visible = true
-            self.Components.Text.Position = Vector2.new(Tagpos.X,Tagpos.Y + 14)
+            self.Components.Text.Position = Vector2.new(Tagpos.X + 5,Tagpos.Y)
             self.Components.Text.Text = self.Name
             self.Components.Text.Color = color
         else
@@ -196,7 +196,7 @@ function zlib:CreateText(obj: BasePart,options: table)
         Color = tab.Color,
         Center = true,
         Outline = true,
-        Size = 18,
+        Size = 19,
         Visible = self.Enabled
     })
 

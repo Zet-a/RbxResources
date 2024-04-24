@@ -259,7 +259,7 @@ function zlib:text(obj,y,x,name,list,optional) -- made by me
             local partpos, onscreen = zlib.__Tools.camera:WorldToViewportPoint(obj.Position)
             if onscreen then
                 txt.Visible = true
-                txt.Position = Vector2.new(partpos.X + x,partpos.Y + y) -- x = offset y = idfk
+                txt.Position = Vector2.new(partpos.X + x,partpos.Y + y)
             else
                 txt.Visible = false
             end

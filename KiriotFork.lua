@@ -257,8 +257,9 @@ function boxBase:Update()
         else
             self.Components.Tracer.Visible = false
         end
-    elseif self.Type == "Text" then
-        print("Why no updater?")
+    end
+    if self.Type == "Text" then
+        print("doesn't work?")
         local TagPos, vis = WorldToViewportPoint(cam, locs.TagPos.p)
         
         if vis then

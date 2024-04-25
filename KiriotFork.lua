@@ -271,6 +271,9 @@ function boxBase:Update()
                 self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .."m away"
                 self.Components.Distance.Color = color
             end
+        else
+            self.Components.Name.Visible = false
+            self.Components.Distance.Visible = false
         end
     end
 end
@@ -363,7 +366,6 @@ function ESP:AddText(obj,options)
         Color = options.Color --[[or self:GetColor(obj)]],
         Size = options.Size or self.BoxSize,
         Object = obj,
-        Player = options.Player or plrs:GetPlayerFromCharacter(obj),
         PrimaryPart = options.PrimaryPart or obj.ClassName == "Model" and (obj.PrimaryPart or obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChildWhichIsA("BasePart")) or obj:IsA("BasePart") and obj,
         Components = {},
         IsEnabled = options.IsEnabled,

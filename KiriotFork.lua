@@ -198,7 +198,7 @@ function boxBase:Update()
         TagPos = cf * ESP.BoxShift * CFrame.new(0,size.Y/2,0),
         Torso = cf * ESP.BoxShift
     }
-    print(self.Type)
+    print(self.Type)--
     if self.Type == "Text" then
         print("doesn't work?")
         local TagPos, vis = WorldToViewportPoint(cam, locs.TagPos.p)

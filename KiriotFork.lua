@@ -199,7 +199,7 @@ function boxBase:Update()
         Torso = cf * ESP.BoxShift
     }
     if self.Type == "Text" then
-        print(self.Type)
+        print(self.Type)--
     end
     if self.Type == "Text" then
         print("doesn't work?")

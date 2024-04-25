@@ -12,6 +12,7 @@ local ESP = {
     AttachShift = 1,
     TeamMates = true,
     Players = true,
+    HpBar = true,
     
     Objects = setmetatable({}, {__mode="kv"}),
     Overrides = {}
@@ -53,6 +54,22 @@ function ESP:IsTeamMate(p)
     end
     
     return self:GetTeam(p) == self:GetTeam(plr)
+end
+
+function ESP:GetHealth(p)
+    local ov = self.Overrides.GetHealth
+    if ov then
+        return ov(p)
+    end
+    return p.Character and p.Character.Humanoid and p.Character.Humanoid.Health
+end
+
+function ESP:GetMaxHealth(p)
+    local ov = self.Overrides.GetMaxHealth
+    if ov then
+        return ov(p)
+    end
+    return p.Character and p.Character.Humanoid and p.Character.Humanoid.MaxHealth
 end
 
 function ESP:GetColor(obj)
@@ -279,6 +296,28 @@ function boxBase:Update()
         else
             self.Components.Tracer.Visible = false
         end
+        if ESP.HpBar then
+            local TopLeft, vis = WorldToViewportPoint(cam, locs.TopLeft.p)
+            local BottomLeft, vis2 = WorldToViewportPoint(cam, locs.BottomLeft.p)
+            if vis and vis2 then
+                local hp = ESP:GetHealth(self.Player)
+                local mxhp = ESP:GetMaxHealth(self.Player)
+                self.Components.HpBarOutline.From = Vector2.new((BottomLeft.X - 5),(BottomLeft.Y + 1))
+                self.Components.HpBarOutline.To = Vector2.new(TopLeft.X - 5,TopLeft.Y)
+                self.Components.HpBarOutline.Visible = true
+
+                self.Components.HpBar.From = Vector2.new((BottomLeft.X - 5),BottomLeft.Y)
+                self.Components.HpBar.To = Vector2.new(TopLeft.X - 5,TopLeft.Y - (1 * (hp/mxhp))) -- im going insane
+                self.Components.HpBar.Color = Color3.fromRGB(255 - 255 / (mxhp / hp), 255 / (mxhp / hp), 0)
+                self.Components.HpBar.Visible = true
+            else
+                self.Components.HpBarOutline.Visible = false
+                self.Components.HpBar.Visible = false
+            end
+        else
+            self.Components.HpBarOutline.Visible = false
+            self.Components.HpBar.Visible = false
+        end
     end
 
 end
@@ -335,6 +374,18 @@ function ESP:Add(obj, options)
 		Color = box.Color,
         Transparency = 1,
         Visible = self.Enabled and self.Tracers
+    })
+    box.Components["HpBarOutline"] = Draw("Line",{
+        Thickness = 3,
+        Color = Color3.fromRGB(0,0,0),
+        Transparency = 1,
+        Visible = self.Enabled
+    })
+    box.Components["HpBar"] = Draw("Line",{
+        Thickness = 1,
+        Color = Color3.fromRGB(0,255,0),
+        Transparency = 1,
+        Visible = self.Enabled
     })
     self.Objects[obj] = box
     

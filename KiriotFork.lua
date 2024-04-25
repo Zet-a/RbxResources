@@ -158,7 +158,7 @@ function boxBase:Update()
     if ESP.Overrides.UpdateAllow and not ESP.Overrides.UpdateAllow(self) then
         allow = false
     end
-    if self.Type == "Box" then
+    if self.Type == "Box" and self.Player ~= nil then
         if self.Player and not ESP.TeamMates and ESP:IsTeamMate(self.Player) then
             allow = false
         end
@@ -198,11 +198,8 @@ function boxBase:Update()
         TagPos = cf * ESP.BoxShift * CFrame.new(0,size.Y/2,0),
         Torso = cf * ESP.BoxShift
     }
+    
     if self.Type == "Text" then
-        print(self.Type)-- why is it printing box ????????
-    end
-    if self.Type == "Text" then
-        print("doesn't work?")
         local TagPos, vis = WorldToViewportPoint(cam, locs.TagPos.p)
         
         if vis then
@@ -215,6 +212,8 @@ function boxBase:Update()
                 self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
                 self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .."m away"
                 self.Components.Distance.Color = color
+            else
+                self.Components.Distance.Visible = false
             end
         else
             self.Components.Name.Visible = false
@@ -374,27 +373,29 @@ function ESP:AddText(obj,options)
         Object = obj,
         PrimaryPart = options.PrimaryPart or obj.ClassName == "Model" and (obj.PrimaryPart or obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChildWhichIsA("BasePart")) or obj:IsA("BasePart") and obj,
         Components = {},
+        ShowDistance = options.ShowDistance,
         IsEnabled = options.IsEnabled,
         Temporary = options.Temporary,
         ColorDynamic = options.ColorDynamic,
         RenderInNil = options.RenderInNil
     }, boxBase)
+
     box.Components["Name"] = Draw("Text", {
 		Text = box.Name,
 		Color = box.Color,
 		Center = true,
 		Outline = true,
         Size = 19,
-        Visible = options.IsEnabled
+        Visible = false
 	})
 	box.Components["Distance"] = Draw("Text", {
 		Color = box.Color,
 		Center = true,
 		Outline = true,
         Size = 19,
-        Visible = options.IsEnabled
+        Visible = false
 	})
-
+    self.Objects[obj] = box
     obj.AncestryChanged:Connect(function(_, parent)
         if parent == nil and ESP.AutoRemove ~= false then
             box:Remove()

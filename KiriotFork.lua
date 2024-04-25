@@ -198,6 +198,26 @@ function boxBase:Update()
         TagPos = cf * ESP.BoxShift * CFrame.new(0,size.Y/2,0),
         Torso = cf * ESP.BoxShift
     }
+    if self.Type == "Text" then
+        print("doesn't work?")
+        local TagPos, vis = WorldToViewportPoint(cam, locs.TagPos.p)
+        
+        if vis then
+            self.Components.Name.Visible = true
+            self.Components.Name.Position = Vector2.new(TagPos.X, TagPos.Y)
+            self.Components.Name.Text = self.Name
+            self.Components.Name.Color = color
+            if self.ShowDistance then
+                self.Components.Distance.Visible = true
+                self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
+                self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .."m away"
+                self.Components.Distance.Color = color
+            end
+        else
+            self.Components.Name.Visible = false
+            self.Components.Distance.Visible = false
+        end
+    end
     if self.Type == "Box" then
         if ESP.Boxes then
             local TopLeft, Vis1 = WorldToViewportPoint(cam, locs.TopLeft.p)
@@ -258,26 +278,7 @@ function boxBase:Update()
             self.Components.Tracer.Visible = false
         end
     end
-    if self.Type == "Text" then
-        print("doesn't work?")
-        local TagPos, vis = WorldToViewportPoint(cam, locs.TagPos.p)
-        
-        if vis then
-            self.Components.Name.Visible = true
-            self.Components.Name.Position = Vector2.new(TagPos.X, TagPos.Y)
-            self.Components.Name.Text = self.Name
-            self.Components.Name.Color = color
-            if self.ShowDistance then
-                self.Components.Distance.Visible = true
-                self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-                self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .."m away"
-                self.Components.Distance.Color = color
-            end
-        else
-            self.Components.Name.Visible = false
-            self.Components.Distance.Visible = false
-        end
-    end
+
 end
 
 function ESP:Add(obj, options)

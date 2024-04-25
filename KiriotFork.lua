@@ -379,14 +379,14 @@ function ESP:AddText(obj,options)
 		Center = true,
 		Outline = true,
         Size = 19,
-        Visible = self.Enabled
+        Visible = options.IsEnabled
 	})
 	box.Components["Distance"] = Draw("Text", {
 		Color = box.Color,
 		Center = true,
 		Outline = true,
         Size = 19,
-        Visible = self.Enabled
+        Visible = options.IsEnabled
 	})
 
     obj.AncestryChanged:Connect(function(_, parent)

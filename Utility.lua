@@ -46,7 +46,9 @@ function library:AddChams(identifier: string, part: BasePart | Model, color: Col
                 fireproximityprompt(prox)
             end)
         end
-
+        local weld = Instance.new("WeldConstraint")
+        weld.Part0 = part
+        weld.Part1 = partClone
         partClone.Transparency = 0.99
         partClone.CanCollide = false
         partClone.Anchored = true
